@@ -1,9 +1,8 @@
 services:
   - type: web
-    name: projetogeradordesp
+    name: gerador-despachos
     env: python
-    buildCommand: pip install poetry && poetry install
-    startCommand: poetry run streamlit run app.py --server.port $PORT --server.address 0.0.0.0
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.11
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run main.py
+    branches: 
+      - main
