@@ -46,14 +46,14 @@ def create_dispatch_pdf(text):
     header_path = "assets/niteroi_cabecalho.jpg"
     if os.path.exists(header_path):
         header_img = ImageReader(header_path)
-        header_width = page_width  # Largura total da página
-        header_height = header_width * 0.12  # Ajustar proporção da imagem
+        header_width = 8.02 * cm  # Largura de 8,02 cm
+        header_height = 1.51 * cm  # Altura de 1,51 cm
         c.drawImage(header_img, 0, page_height - header_height, 
                     width=header_width, height=header_height, preserveAspectRatio=True)
     else:
         # Se a imagem não estiver disponível, deixar um espaço para o cabeçalho
         c.setFont("Helvetica-Bold", 16)
-        c.drawCentredString(page_width/2, page_height - margin_top/2, "PREFEITURA MUNICIPAL DE NITERÓI")
+        c.drawCentredString(page_width/2, page_height - margin_top/2, "Secretaria da Fazenda de Niterói | SEREC")
     
     # Configurar fonte e tamanho para o corpo do texto
     try:
