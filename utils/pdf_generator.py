@@ -43,20 +43,20 @@ def create_dispatch_pdf(text):
     c = canvas.Canvas(buffer, pagesize=A4)
     
     # Adicionar cabeçalho
-header_path = "assets/niteroi_cabecalho.jpg"
-if os.path.exists(header_path):
-    header_img = ImageReader(header_path)
-    header_width = 8.02 * cm  # Largura de 8,02 cm
-    header_height = 1.51 * cm  # Altura de 1,51 cm
-    x_position = (page_width - header_width) / 2
-    top_margin_cm = 1 * cm  # margem do topo
-    y_position = page_height - header_height - top_margin_cm  # aplica a margem
-    c.drawImage(header_img, x_position, y_position, 
-                width=header_width, height=header_height, preserveAspectRatio=True)
-else:
-    # Se a imagem não estiver disponível, deixar um espaço para o cabeçalho
-    c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(page_width/2, page_height - margin_top/2, "Secretaria da Fazenda de Niterói | SEREC")
+    header_path = "assets/niteroi_cabecalho.jpg"
+    header_height = 0  # valor padrão caso a imagem não exista
+    if os.path.exists(header_path):
+        header_img = ImageReader(header_path)
+        header_width = 8.02 * cm  # Largura de 8,02 cm
+        header_height = 1.51 * cm  # Altura de 1,51 cm
+        x_position = (page_width - header_width) / 2
+        y_position = page_height - header_height - 1.2 * cm  # Adicionado espaço extra acima
+        c.drawImage(header_img, x_position, y_position, 
+                    width=header_width, height=header_height, preserveAspectRatio=True)
+    else:
+        # Se a imagem não estiver disponível, deixar um espaço para o cabeçalho
+        c.setFont("Helvetica-Bold", 16)
+        c.drawCentredString(page_width / 2, page_height - margin_top / 2, "Secretaria da Fazenda de Niterói | SEREC")
     
     # Configurar fonte e tamanho para o corpo do texto
     try:
@@ -65,20 +65,18 @@ else:
         c.setFont("Helvetica", 14)
     
     # Definir posição inicial para o texto
-    text_top = page_height - margin_top - (header_height if os.path.exists(header_path) else margin_top/2) - 30
+    text_top = page_height - margin_top - (header_height + 1.2 * cm if os.path.exists(header_path) else margin_top / 2) - 30
     text_width = page_width - margin_left - margin_right
     
     # Quebrar o texto em linhas
     lines = []
     for paragraph in text.split('\n'):
-        # Verificar se o parágrafo é vazio
         if not paragraph:
             lines.append('')
         else:
             words = paragraph.split()
             line = ''
             for word in words:
-                # Verificar se a linha atual + a nova palavra cabe na largura
                 test_line = line + ' ' + word if line else word
                 if c.stringWidth(test_line, "Times-Roman", 14) <= text_width:
                     line = test_line
@@ -90,9 +88,9 @@ else:
     
     # Desenhar o texto
     y = text_top
-    line_height = 20  # Ajustar conforme necessário para espaçamento simples
+    line_height = 20  # Ajustar conforme necessário
     for line in lines:
-        if y < margin_bottom + 50:  # Verificar se precisa de nova página
+        if y < margin_bottom + 50:
             c.showPage()
             try:
                 c.setFont("Times-Roman", 14)
@@ -109,7 +107,7 @@ else:
         c.setFont("Times-Roman", 9)
     except:
         c.setFont("Helvetica", 9)
-    c.drawCentredString(page_width/2, margin_bottom/2, footer_text)
+    c.drawCentredString(page_width / 2, margin_bottom / 2, footer_text)
     
     # Finalizar o PDF
     c.save()
