@@ -48,8 +48,9 @@ def create_dispatch_pdf(text):
         header_img = ImageReader(header_path)
         header_width = 8.02 * cm  # Largura de 8,02 cm
         header_height = 1.51 * cm  # Altura de 1,51 cm
-        c.drawImage(header_img, 0, page_height - header_height, 
-                    width=header_width, height=header_height, preserveAspectRatio=True)
+        x_position = (page_width - header_width) / 2
+        c.drawImage(header_img, x_position, page_height - header_height, 
+                width=header_width, height=header_height, preserveAspectRatio=True)
     else:
         # Se a imagem não estiver disponível, deixar um espaço para o cabeçalho
         c.setFont("Helvetica-Bold", 16)

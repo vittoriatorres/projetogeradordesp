@@ -169,5 +169,5 @@ Matrícula {matricula_usuario}"""
 
 st.markdown("---")
 st.caption(
-    "SEREC | Secretaria da Fazenda de Niterói\nElaborado por Vittoria Torres Silva"
+    "@ 2025 Secretaria da Fazenda de Niterói\n | Elaborado por Vittoria Torres Silva"
 )
