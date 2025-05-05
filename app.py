@@ -13,20 +13,20 @@ st.set_page_config(page_title="Gerador de Despachos",
 st.title("Gerador de Despachos")
 
 
-# Function to sanitize filename
+# Função para limpar nome do arquivo final
 def sanitize_filename(filename):
     # Replace prohibited characters with periods
     sanitized = re.sub(r'[\\/*?:"<>|]', ".", filename)
     return sanitized
 
 
-# Function to download PDF
+# Função para realizar download do PDF
 def get_download_link(pdf_bytes, filename):
     b64_pdf = io.BytesIO(pdf_bytes)
     return b64_pdf
 
 
-# Main form
+# Formulário principal
 with st.form("despacho_form"):
     st.subheader("Informações do Despacho")
 
@@ -168,6 +168,10 @@ Matrícula {matricula_usuario}"""
         st.warning("Por favor, preencha todos os campos obrigatórios.")
 
 st.markdown("---")
-st.caption(
-    "@ 2025 Secretaria da Fazenda de Niterói\n | Elaborado por Vittoria Torres Silva"
-)
+# Centralizar rodapé
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.caption(
+        "@ 2025 Secretaria da Fazenda de Niterói | Elaborado por Vittoria Torres Silva"
+    )
