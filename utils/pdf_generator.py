@@ -60,9 +60,9 @@ def create_dispatch_pdf(text):
     
     # Configurar fonte e tamanho para o corpo do texto
     try:
-        c.setFont("Times-Roman", 14)
+        c.setFont("Times-Roman", 13)
     except:
-        c.setFont("Helvetica", 14)
+        c.setFont("Helvetica", 13)
     
     # Definir posição inicial para o texto
     text_top = page_height - margin_top - (header_height + 1.2 * cm if os.path.exists(header_path) else margin_top / 2) - 30
@@ -102,12 +102,22 @@ def create_dispatch_pdf(text):
         y -= line_height
     
     # Adicionar rodapé
-    footer_text = "Rua da Conceição, nº 100 – Centro – Niterói-RJ – CEP.: 24.020-084 Tel: (21) 2613-6617/2621-2990"
+    footer_text = ["Rua da Conceição, nº 100 – Centro – Niterói-RJ – CEP.: 24.020-084 Tel: 21 | 2621-2400",
+                   "www.fazenda.niteroi.rj.gov.br"
+    ]
+    footer_font_size = 10 # Definir um tamanho de fonte consistente
+    footer_line_height = 11 # Espaçamento entre linhas do rodapé
+    
     try:
-        c.setFont("Times-Roman", 9)
+        c.setFont("ArialNova", 10)
     except:
-        c.setFont("Helvetica", 9)
-    c.drawCentredString(page_width / 2, margin_bottom / 2, footer_text)
+        c.setFont("Helvetica", 10)
+    
+    # Centralizar rodapé
+    start_y = (margin_bottom / 2) + ((len(footer_lines) - 1) * footer_line_height / 2)
+    for i, line in enumerate(footer_lines):
+        y_pos = start_y - (i * footer_line_height)
+        c.drawCentredString(page_width / 2, y_pos, line)
     
     # Finalizar o PDF
     c.save()
