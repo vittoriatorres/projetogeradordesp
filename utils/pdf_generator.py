@@ -47,8 +47,8 @@ def create_dispatch_pdf(text):
     header_height = 0  # valor padrão caso a imagem não exista
     if os.path.exists(header_path):
         header_img = ImageReader(header_path)
-        header_width = 8.02 * cm  # Largura de 8,02 cm
-        header_height = 1.51 * cm  # Altura de 1,51 cm
+        header_width = 7.33 * cm  # Largura de 7,33 cm
+        header_height = 2.49 * cm  # Altura de 2,49 cm
         x_position = (page_width - header_width) / 2
         y_position = page_height - header_height - 1.2 * cm  # Adicionado espaço extra acima
         c.drawImage(header_img, x_position, y_position, 
