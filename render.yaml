@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: gerador-despachos
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run main.py
-    branches: 
-      - main
