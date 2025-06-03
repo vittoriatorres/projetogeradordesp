@@ -102,7 +102,7 @@ def create_dispatch_pdf(text):
         y -= line_height
     
     # Adicionar rodapé
-    footer_text = ["Rua da Conceição, nº 100 – Centro – Niterói-RJ – CEP.: 24.020-084 Tel: 21 | 2621-2400",
+    footer_lines = ["Rua da Conceição, nº 100 – Centro – Niterói-RJ – CEP.: 24.020-084 Tel: 21 | 2621-2400",
                    "www.fazenda.niteroi.rj.gov.br"
     ]
     footer_font_size = 10 # Definir um tamanho de fonte consistente
