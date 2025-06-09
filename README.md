@@ -20,34 +20,20 @@ Facilitar e padronizar a criação de despachos administrativos, otimizando o te
 ### 📂 Estrutura do Projeto
 
 ```
-├── app.py                       # Arquivo principal para rodar o Streamlit
-├── assets
-│   └── niteroi_cabecalho.jpg    # Imagem utilizada no cabeçalho do despacho
-├── pyproject.toml               # Arquivo de configuração do Poetry (se utilizado)
-├── render.yaml                  # Configuração de deploy no Render
-├── requirements.txt             # Dependências do projeto
-└── utils
-    └── pdf_generator.py         # Funções auxiliares para geração e manipulação de PDFs
+PROJETOGERADORDESP/
+├── .streamlit/
+│   └── config.toml
+├── assets/
+│   └── niteroi_cabecalho.jpg
+├── utils/
+│   └── pdf_generator.py
+├── .gitignore
+├── app.py
+├── Dockerfile
+├── pyproject.toml
+├── README.md
+├── requirements.txt
 ```
-
-### 🚀 Deploy no Render
-
-1. Acesse [Render.com](https://render.com/) e crie uma conta (se ainda não tiver).
-2. Após o login, clique em "New +" e escolha **Web Service**.
-3. Conecte sua conta do GitHub (ou GitLab/Bitbucket) ao Render.
-4. Escolha o repositório do seu projeto **Gerador de Despachos**.
-5. Configurar o Serviço de Web
-
-- **Nome do Serviço**: Escolha um nome para o seu serviço (ex: `gerador-despachos`).
-- **Branch**: Selecione o branch principal (normalmente `main`).
-- **Build Command**:
-  ```
-  pip install -r requirements.txt
-  ```
-  - **Start Command:**
-  ```
-  streamlit run app.py
-  ```
 
 ### 🛠️ Uso
 1. Escolha o tipo de despacho;
